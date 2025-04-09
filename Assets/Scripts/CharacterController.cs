@@ -38,7 +38,7 @@ public class CharacterController : MonoBehaviour
             playerInput = GetComponent<PlayerInput>();
             if (playerInput == null)
             {
-                Debug.LogError("PlayerInput component bulunamadý! Lütfen objeye bir PlayerInput component ekleyin.");
+                Debug.LogError("PlayerInput component bulunamadï¿½! Lï¿½tfen objeye bir PlayerInput component ekleyin.");
             }
         }
 
@@ -67,7 +67,7 @@ public class CharacterController : MonoBehaviour
     {
         if (groundCheckOrigin == null)
         {
-            Debug.LogWarning("Ground Check Origin atanmamýþ! Lütfen Inspector'dan bir referans objesi atayýn.");
+            Debug.LogWarning("Ground Check Origin atanmamï¿½ï¿½! Lï¿½tfen Inspector'dan bir referans objesi atayï¿½n.");
         }
     }
 
@@ -100,9 +100,9 @@ public class CharacterController : MonoBehaviour
                 sr.flipX = false;
             }
             else if (h_input < 0 && !sr.flipX) { sr.flipX = true; }
-            rb.velocity = Vector3.up * rb.velocity.y + h_input * speed * Vector3.right;
+            rb.linearVelocity = Vector3.up * rb.linearVelocity.y + h_input * speed * Vector3.right;
 
-            if (isGrounded && rb.velocity.x != 0)
+            if (isGrounded && rb.linearVelocity.x != 0)
             {
                 if (!isMoving)
                 {
@@ -141,7 +141,7 @@ public class CharacterController : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, groundCheckDistance, groundLayer);
 
-        if (rb.velocity.y < -5 && hit.collider != null)
+        if (rb.linearVelocity.y < -5 && hit.collider != null)
         {
             
         }

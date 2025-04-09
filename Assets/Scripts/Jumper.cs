@@ -20,7 +20,7 @@ public class Jumper : MonoBehaviour
         animator = GetComponent<Animator>();
         if (animator == null)
         {
-            Debug.LogWarning("Jumper objesinde Animator bileþeni bulunamadý!");
+            Debug.LogWarning("Jumper objesinde Animator bileï¿½eni bulunamadï¿½!");
         }
 
         jumpDirection.Normalize();
@@ -41,7 +41,7 @@ public class Jumper : MonoBehaviour
         if (animator != null)
         {
             animator.Play(jumpAnimationName);
-            Debug.Log("Jumper animasyonu oynatýlýyor: " + jumpAnimationName);
+            Debug.Log("Jumper animasyonu oynatï¿½lï¿½yor: " + jumpAnimationName);
         }
     }
 
@@ -56,11 +56,11 @@ public class Jumper : MonoBehaviour
         {
             if (resetPlayerVelocity)
             {
-                playerRb.velocity = Vector2.zero;
+                playerRb.linearVelocity = Vector2.zero;
             }
 
             playerRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
-            Debug.Log("Player zýplatýldý! Kuvvet: " + (jumpDirection * jumpForce));
+            Debug.Log("Player zï¿½platï¿½ldï¿½! Kuvvet: " + (jumpDirection * jumpForce));
 
             Animator playerAnimator = player.GetComponent<Animator>();
             if (playerAnimator != null)
@@ -68,17 +68,17 @@ public class Jumper : MonoBehaviour
                 try
                 {
                     playerAnimator.Play("Jump");
-                    Debug.Log("Player Jump animasyonu çalýþtýrýldý");
+                    Debug.Log("Player Jump animasyonu ï¿½alï¿½ï¿½tï¿½rï¿½ldï¿½");
                 }
                 catch (System.Exception e)
                 {
-                    Debug.LogWarning("Player Jump animasyonu çalýþtýrýlamadý: " + e.Message);
+                    Debug.LogWarning("Player Jump animasyonu ï¿½alï¿½ï¿½tï¿½rï¿½lamadï¿½: " + e.Message);
                 }
             }
         }
         else
         {
-            Debug.LogError("Player objesinde Rigidbody2D bileþeni bulunamadý!");
+            Debug.LogError("Player objesinde Rigidbody2D bileï¿½eni bulunamadï¿½!");
         }
     }
 }

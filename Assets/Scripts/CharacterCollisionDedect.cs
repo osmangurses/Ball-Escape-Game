@@ -36,7 +36,7 @@ public class CharacterCollisionDedect : MonoBehaviour
         {
             AudioPlayer.instance.StopAudio(AudioName.music);
             AudioPlayer.instance.PlayAudio(AudioName.explosion);
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.gravityScale= 0;
             characterController.controls_locked = true;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -51,7 +51,7 @@ public class CharacterCollisionDedect : MonoBehaviour
         {
             AudioPlayer.instance.StopAudio(AudioName.music);
             AudioPlayer.instance.PlayAudio(AudioName.explosion);
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.gravityScale = 0;
             characterController.controls_locked = true;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -71,7 +71,7 @@ public class CharacterCollisionDedect : MonoBehaviour
         if (collision.CompareTag("EndHole"))
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             characterController.controls_locked = true;
             AudioPlayer.instance.StopAudio(AudioName.music);
             AudioPlayer.instance.PlayAudio(AudioName.transition);
@@ -91,7 +91,7 @@ public class CharacterCollisionDedect : MonoBehaviour
             last_tp_time = current_time;
             float tempgravity=rb.gravityScale;
             rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             characterController.controls_locked = true;
             GetComponentInChildren<TrailRenderer>().emitting = false;
             transform.DOScale(Vector3.zero, 0.5f).OnComplete(() =>

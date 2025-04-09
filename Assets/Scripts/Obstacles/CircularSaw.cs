@@ -50,7 +50,7 @@ public class CircularSaw : MonoBehaviour
 
     void MoveObject()
     {
-        rb.velocity=Vector3.right * direction * moveSpeed +rb.velocity.y*Vector3.up;
+        rb.linearVelocity=Vector3.right * direction * moveSpeed +rb.linearVelocity.y*Vector3.up;
     }
 
     void RotateSaw()

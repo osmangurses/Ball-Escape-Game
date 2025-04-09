@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using EasyTransition;
 
 public class LevelDatas : MonoBehaviour
 {
@@ -11,9 +14,13 @@ public class LevelDatas : MonoBehaviour
     public Button restart_button;
     GameObject instantiated_level_objects=null;
     float ad_timer;
+    PlayerInput inputs;
+    [SerializeField] TransitionSettings levelTransitionSettings;
+    [SerializeField] TransitionManager transitionManager;
     private void Awake()
     {
         instance = this;
+        inputs = GetComponent<PlayerInput>();
     }
     private void Start()
     {
@@ -25,6 +32,15 @@ public class LevelDatas : MonoBehaviour
         current_level_index = PlayerPrefs.GetInt("FHLevel");
         RestartLevel();
         restart_button.onClick.AddListener(RestartLevel);
+    }
+    private void OnEnable()
+    {
+        inputs.actions["RestartLevel"].performed += ctx => RestartLevel();
+    }
+    private void OnDisable()
+    {
+        inputs.actions["RestartLevel"].performed -= ctx => RestartLevel();
+
     }
     private void Update()
     {
@@ -48,20 +64,16 @@ public class LevelDatas : MonoBehaviour
     public void next_level()
     {
         AudioPlayer.instance.StopAllAudio();
-        if (instantiated_level_objects != null)
-        {
-            Destroy(instantiated_level_objects);
-        }
         current_level_index++;
-        instantiated_level_objects = Instantiate(level_datas[current_level_index].level_objects);
+        //instantiated_level_objects = Instantiate(level_datas[current_level_index].level_objects);
         if (ad_timer > 180)
         {
             ADManager.instance.ShowMidGameAD();
             ad_timer = 0;
         }
-        AudioPlayer.instance.PlayAudio(AudioName.music);
         PlayerPrefs.SetInt("FHLevel", current_level_index);
         PlayerPrefs.Save();
+        transitionManager.Transition(SceneManager.GetActiveScene().name,levelTransitionSettings,0);
     }
     public void ResetGame()
     {

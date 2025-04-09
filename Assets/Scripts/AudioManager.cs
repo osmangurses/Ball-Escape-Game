@@ -7,7 +7,7 @@ public class AudioPlayer : MonoBehaviour
 {
     public static AudioPlayer instance;
     private List<AudioSource> audioSources = new List<AudioSource>();
-    public List<AudioData> audios; // Audios yerine AudioData kullanýlacak
+    public List<AudioData> audios;
 
     private void Awake()
     {
@@ -15,15 +15,14 @@ public class AudioPlayer : MonoBehaviour
         {
             PlayerPrefs.SetInt("IsSoundOn", 1);
         }
-        // Singleton yapýsý oluþturmak için, baþka bir instance varsa onu yok et
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Bu nesneyi sahneler arasýnda koru
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
-            Destroy(gameObject); // Baþka bir instance varsa, bu instance'ý yok et
+            Destroy(gameObject);
         }
 
     }
@@ -36,16 +35,16 @@ public class AudioPlayer : MonoBehaviour
     public void PlayAudio(AudioName audioName)
     {
         AudioSource audioSource = CheckAudioSources();
-        foreach (AudioData audioData in audios) // Audios yerine AudioData kullanýlacak
+        foreach (AudioData audioData in audios)
         {
             if (audioData.audioName == audioName)
             {
                 audioSource.clip = audioData.clip;
                 audioSource.volume = audioData.volume * PlayerPrefs.GetInt("IsSoundOn");
                 audioSource.pitch = Random.Range(1 - (audioData.pitchRandomize / 5), 1 + (audioData.pitchRandomize / 5));
-                audioSource.loop = audioData.loop; // Loop özelliðini ayarla
+                audioSource.loop = audioData.loop;
                 audioSource.Play();
-                return; // Ses bulundu ve çalýndý, fonksiyondan çýk
+                return;
             }
         }
         Debug.LogWarning("Audio not found: " + audioName);
@@ -57,19 +56,19 @@ public class AudioPlayer : MonoBehaviour
         {
             if (source.isPlaying && source.clip != null && GetAudioNameByClip(source.clip) == audioName.ToString())
             {
-                source.Stop(); // Oynayan sesi durdur
-                return; // Ses bulundu ve durduruldu, fonksiyondan çýk
+                source.Stop();
+                return;
             }
         }
         Debug.LogWarning("Audio not playing or not found: " + audioName);
     }
-    public void StopAllAudio() // Tüm sesleri durdur
+    public void StopAllAudio()
     {
         foreach (AudioSource source in audioSources)
         {
             if (source.isPlaying)
             {
-                source.Stop(); // Çalan tüm sesleri durdur
+                source.Stop();
             }
         }
         Debug.Log("All audio stopped.");
@@ -118,7 +117,6 @@ public class AudioPlayer : MonoBehaviour
 
     private void ClearAudioSources()
     {
-        // audioSources listesini temizle
         audioSources.Clear();
     }
 }
@@ -134,7 +132,7 @@ public class AudioData
 
     public AudioClip clip;
     public AudioName audioName;
-    public bool loop; // Loop özelliði eklendi
+    public bool loop;
 }
 
 public enum AudioName

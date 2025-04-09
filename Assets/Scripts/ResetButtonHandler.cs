@@ -5,7 +5,6 @@ public class ResetButtonHandler : MonoBehaviour
 
     void Start()
     {
-        // Sahnedeki LevelDatas objesini bulma
         levelDatas = FindObjectOfType<LevelDatas>();
     }
 
@@ -13,7 +12,7 @@ public class ResetButtonHandler : MonoBehaviour
     {
         if (levelDatas != null)
         {
-            levelDatas.ResetGame();  // LevelDatas içindeki ResetGame fonksiyonunu çaðýrýr
+            levelDatas.ResetGame();
         }
     }
 }

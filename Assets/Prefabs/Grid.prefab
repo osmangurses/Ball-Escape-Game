@@ -7003,9 +7003,13 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 680
     m_Data: {fileID: 11400000, guid: e4ea3a80579229f48bd093c971c35c1f, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 680
     m_Data: {fileID: 21300000, guid: b3c0ff86d741914419e44d9f32d68640, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 680
     m_Data:
@@ -7092,7 +7096,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -500
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

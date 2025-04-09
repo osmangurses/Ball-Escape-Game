@@ -28,7 +28,7 @@ public class ControlManager : MonoBehaviour
         if (!isMobile) 
         {
             x_input = Input.GetAxis("Horizontal");
-            if (Input.GetButtonDown("Vertical"))
+            if (Input.GetButtonDown("Jump"))
             {
                 jump = true;
             }

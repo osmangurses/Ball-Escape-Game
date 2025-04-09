@@ -86,7 +86,6 @@ public class CharacterCollisionDedect : MonoBehaviour
         }
         if (collision.CompareTag("Teleporter") && current_time>last_tp_time+0.8)
         {
-            coll.enabled = false;
             AudioPlayer.instance.PlayAudio(AudioName.transition);
             last_tp_time = current_time;
             float tempgravity=rb.gravityScale;
@@ -102,7 +101,6 @@ public class CharacterCollisionDedect : MonoBehaviour
                 transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
                 {
                     characterController.controls_locked = false;
-                    coll.enabled = true;
                 });
                 rb.gravityScale = tempgravity;
                 
